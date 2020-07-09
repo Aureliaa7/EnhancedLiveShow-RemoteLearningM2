@@ -1,0 +1,36 @@
+﻿@model IEnumerable<LiveShowClient.ViewModels.ShowWithIdVM>;
+
+@{
+    ViewData["Title"] = "Shows";
+    Layout = "~/Views/Shared/_LayoutArtist.cshtml";
+}
+
+<h4 style="text-align: center; color: azure; margin-top: 40px;">Shows</h4>
+
+<div class="row justify-content-center">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3" style="margin:40px">
+            <div class="card">
+                <img class="card-img-top" src="~/images/people-having-a-concert-1190297.jpg" alt="Live Show"/>
+                <div class="card-body">
+                    <b>@Html.DisplayNameFor(model => model.Venue): </b>@Html.DisplayFor(modelItem => item.Venue)
+                    <br />
+                    <b>@Html.DisplayNameFor(model => model.DateTime): </b> @Html.DisplayFor(modelItem => item.DateTime)
+                    <br />
+                    <b> @Html.DisplayNameFor(model => model.IsCanceled): </b> @Html.DisplayFor(modelItem => item.IsCanceled)
+                    <br />
+                    <b>@Html.DisplayNameFor(model => model.Genre): </b> @Html.DisplayFor(modelItem => item.Genre)
+                    <br />
+                    <b>@Html.DisplayNameFor(model => model.Attendances): </b> @Html.DisplayFor(modelItem => item.Attendances)
+                </div>
+                <div class="card-footer justify-content-center">
+                    <a asp-action="Update" asp-route-id="@item.Id">Update</a> |
+                    <a asp-action="Cancel" asp-route-id="@item.Id">Cancel</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> 
+                </div>
+            </div>
+        </div>
+        <br />
+    }
+</div>

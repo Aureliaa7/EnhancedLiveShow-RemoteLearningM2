@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LiveShow.Services.Models.User.UserDto>;
+
+@{
+    ViewData["Title"] = "Followees";
+    if (User.IsInRole("Artist"))
+    {
+        Layout = "~/Views/Shared/_LayoutArtist.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    }
+}
+
+<h4 style="text-align: center; color: azure; margin-top:40px;">Followees</h4>
+
+<div class="container text-center" style="justify-content:center">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3" style="margin:40px">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </h4>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </div>
+                    <div class="card-footer">
+                        <a asp-action="Unfollow" asp-route-id="@item.Id">Unfollow</a>
+                    </div>
+                </div>
+            </div>
+            <br />
+        }
+    </div>
+</div>

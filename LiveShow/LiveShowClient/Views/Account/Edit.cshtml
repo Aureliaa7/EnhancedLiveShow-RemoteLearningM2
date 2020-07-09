@@ -1,0 +1,39 @@
+﻿@model LiveShow.Services.Models.User.UserEditDto
+
+@{ ViewData["Title"] = "Edit account";
+    if (User.IsInRole("Artist"))
+    {
+        Layout = "~/Views/Shared/_LayoutArtist.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    }
+}
+
+<h4 style="text-align: center; margin-top: 70px; color: azure;">Edit name</h4>
+<hr />
+<div class="row justify-content-center" style="margin-top:40px;">
+    <div class="jumbotron">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label text-black-50"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label text-black-50"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" id="button-form" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

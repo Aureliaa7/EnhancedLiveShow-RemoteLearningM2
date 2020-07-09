@@ -1,0 +1,20 @@
+﻿@{ ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+@{ if (Model != null)
+ {
+    <div class="row justify-content-center" style="margin-top:100px;">
+        <div class="jumbotron">
+            <h3 style="text-align: center;">Personal data</h3>
+            <hr />
+            <h4>First name:  @Model.FirstName</h4>
+            <h4>Last name: @Model.LastName</h4>
+            <h4>User type: @Model.Type</h4>
+            <a asp-action="Edit" asp-controller="Account" asp-route-id="@Model.Id">Edit</a> |
+            <a asp-action="ChangePassword" asp-controller="Account" asp-route-id="@Model.Id">Change password</a>
+        </div>
+    </div> 
+    } 
+}
